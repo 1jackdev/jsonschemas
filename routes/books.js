@@ -35,9 +35,7 @@ router.post("/", async function (req, res, next) {
   try {
     const validityCheck = jsonschema.validate(req.body, bookSchema);
     if (!validityCheck.valid) {
-      let listOfErrors = validityCheck.errors.map((e) => {
-        e.stack;
-      });
+      let listOfErrors = validityCheck.errors.map(e => e.stack);
       let error = new ExpressError(listOfErrors, 400);
       return next(error);
     }
